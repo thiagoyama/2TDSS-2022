@@ -8,7 +8,7 @@ namespace Fiap.Aula02.UI.Models
         public int Horas { get; set; }
 
         //Construtor com nome, genero, valorhora e horas
-        public Professor(string nome, string genero, 
+        public Professor(string nome, Genero genero, 
                         decimal valorHora, int horas) : base(nome, genero)
         {
             ValorHora = valorHora;
@@ -16,7 +16,7 @@ namespace Fiap.Aula02.UI.Models
         }
 
         //Construtor com nome, genero, valorhora, horas e especialidade
-        public Professor(string nome, string genero, decimal valorHora, 
+        public Professor(string nome, Genero genero, decimal valorHora, 
                         int horas, string especialidade): base(nome, genero)
         {
             ValorHora = valorHora;
@@ -25,6 +25,13 @@ namespace Fiap.Aula02.UI.Models
         }
 
         //Métodos
+        //Sobrescrever o método Falar da Pessoa
+        public override void Falar()
+        {
+            //base.Falar(); //Chama o método Falar da classe Pessoa
+            Console.WriteLine("Professor dando aula..");
+        }
+
         public override string ExibirDados()
         {
             return $"Nome: {Nome}, Especialidade: {Especialidade}";
@@ -41,6 +48,12 @@ namespace Fiap.Aula02.UI.Models
         {
             //Retorna o valor hora * (as horas trabalhadas + horas extras)
             return (Horas + horasExtras) * ValorHora; 
+        }
+
+        public override string ToString()
+        {
+            //base.ToString() -> chama o método ToString da classe Pessoa
+            return base.ToString() + $", Valor Hora: {ValorHora}, Horas: {Horas}, Especialidade: {Especialidade}";
         }
 
     }

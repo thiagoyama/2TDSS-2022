@@ -1,8 +1,8 @@
 ﻿
 namespace Fiap.Aula02.UI.Models
 {
-    //Aluno herda de Pessoa
-    internal class Aluno : Pessoa
+    //Aluno herda de Pessoa e implementa IEstudante
+    internal class Aluno : Pessoa, IEstudante
     {
         //Propriedades rm, curso, ano ingresso
         public int Rm { get; set; }
@@ -10,7 +10,7 @@ namespace Fiap.Aula02.UI.Models
         public int AnoIngresso { get; set; }
 
         //Criar o construtor do Aluno com nome, genero e rm
-        public Aluno(string nome, string genero, int rm) : base(nome, genero)
+        public Aluno(string nome, Genero genero, int rm) : base(nome, genero)
         {
             Rm = rm;
         }
@@ -21,5 +21,14 @@ namespace Fiap.Aula02.UI.Models
             return $"RM: {Rm}, Nome: {Nome}, Curso: {Curso}";
         }
 
+        public void PagarBoleto(string codigoBarras)
+        {
+            Console.WriteLine($"Pagando boleto {codigoBarras}");
+        }
+
+        public void FazerProva(string disciplina)
+        {
+            Console.WriteLine($"Fazendo a prova de {disciplina}");
+        }
     }
 }
