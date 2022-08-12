@@ -1,4 +1,6 @@
 ﻿
+using Fiap.Aula02.UI.Exceptions;
+
 namespace Fiap.Aula02.UI.Models
 {
     //Aluno herda de Pessoa e implementa IEstudante
@@ -28,6 +30,10 @@ namespace Fiap.Aula02.UI.Models
 
         public void FazerProva(string disciplina)
         {
+            //Valida se a disciplina é vazia ou nula 
+            if (string.IsNullOrEmpty(disciplina))
+                //Lançar a exception da disciplina
+                throw new DisciplinaInvalidaException("Disciplina inválida");
             Console.WriteLine($"Fazendo a prova de {disciplina}");
         }
     }

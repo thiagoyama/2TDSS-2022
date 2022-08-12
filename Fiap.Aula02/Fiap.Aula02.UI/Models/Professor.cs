@@ -46,6 +46,10 @@ namespace Fiap.Aula02.UI.Models
         //Sobrecarga de método
         public decimal CalcularSalario(int horasExtras)
         {
+            //Validar se a horasExtras é maior do zero
+            if (horasExtras < 0)
+                //Se for negativo, lançar a exception ArgumentException()
+                throw new ArgumentException("Horas extras precisa ser maior do que 0");
             //Retorna o valor hora * (as horas trabalhadas + horas extras)
             return (Horas + horasExtras) * ValorHora; 
         }
