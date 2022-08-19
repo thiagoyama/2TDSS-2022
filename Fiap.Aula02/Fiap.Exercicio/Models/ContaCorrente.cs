@@ -24,11 +24,6 @@ namespace Fiap.Exercicio.Models
         public TipoConta Tipo { get; set; }
         public decimal Limite { get; set; }
 
-        public override void Depositar(decimal valor)
-        {
-            Saldo += valor;
-        }
-
         public override void Retirar(decimal valor)
         {
             if (Saldo + Limite < valor)
@@ -37,6 +32,12 @@ namespace Fiap.Exercicio.Models
             }
             Saldo -= valor;
         }
+
+        public override string ToString()
+        {
+            return base.ToString() + $", Tipo: {Tipo}, Limite: {Limite}";
+        }
+
     }//class
 
     public enum TipoConta

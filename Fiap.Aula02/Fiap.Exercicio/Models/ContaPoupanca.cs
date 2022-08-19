@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fiap.Exercicio.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,23 +9,24 @@ namespace Fiap.Exercicio.Models
 {
     internal class ContaPoupanca : Conta, IContaInvestimento
     {
-        public ContaPoupanca(int agencia, int numero, IList<Cliente> clientes) : base(agencia, numero, clientes)
+        public ContaPoupanca(int agencia, int numero, 
+            IList<Cliente> clientes, decimal taxa) : base(agencia, numero, clientes)
         {
+            Taxa = taxa;
         }
+
+        public decimal Taxa { get; set; }
 
         public decimal CalcularRetornoInvestimento()
         {
-            throw new NotImplementedException();
-        }
-
-        public override void Depositar(decimal valor)
-        {
-            throw new NotImplementedException();
+            return Saldo * 0.04m; //m -> define o valor como decimal
         }
 
         public override void Retirar(decimal valor)
         {
-            throw new NotImplementedException();
+            if (Saldo < valor + Taxa)
+                throw new SaldoInsuficienteException();
+            Saldo -= valor + Taxa;
         }
     }
 }

@@ -16,8 +16,17 @@ namespace Fiap.Exercicio.Models
             Clientes = clientes;
         }
 
-        public abstract void Depositar(decimal valor);
+        //virtual -> permite a sobrescrita do método
+        public virtual void Depositar(decimal valor)
+        {
+            Saldo += valor;
+        }
+
         public abstract void Retirar(decimal valor);
 
+        public override string ToString()
+        {
+            return $"Número: {Numero}, Agência: {Agencia}, Saldo: {Saldo}";
+        }
     }
 }
