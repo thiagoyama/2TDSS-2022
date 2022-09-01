@@ -23,7 +23,7 @@ namespace Fiap.Aula03.Web.Controllers
             ViewData["desc"] = $"Descrição: {produto.Descricao}";
             //Enviar o objeto produto para a view
             ViewBag.prod = produto;
-            return View("Sucesso");
+            return View("Sucesso", produto);
             //return Content($"Descrição: {produto.Descricao}, Valor: {produto.Valor}");
         }
 

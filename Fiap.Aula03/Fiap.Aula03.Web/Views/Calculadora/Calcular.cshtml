@@ -1,0 +1,27 @@
+﻿<h1>Calculadora</h1>
+
+<form action="/calculadora/calcular" method="post">
+    <div class="mb-3">
+        <label class="form-label">Número 1</label>
+        <input type="text" name="n1" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Número 2</label>
+        <input type="text" name="n2" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Operação</label>
+        <select name="operacao" class="form-select">
+            <option>Selecione</option>
+            <option>+</option>
+            <option>-</option>
+            <option>*</option>
+            <option>/</option>
+        </select>
+    </div>
+    <input type="submit" value="Calcular" class="btn btn-success mb-3" />
+    <div>
+        <input type="text" class="form-control" 
+                        value="@TempData["resultado"]" readonly="readonly" />
+    </div>
+</form>

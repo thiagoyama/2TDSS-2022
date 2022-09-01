@@ -1,4 +1,5 @@
-﻿
+﻿@model Produto 
+@*Recebe o objeto produto da controller*@
 
 <h2>@ViewData["desc"]</h2>
 
@@ -6,3 +7,6 @@
     @ViewBag.prod.Descricao, R$ @ViewBag.prod.Valor
 </h3>
 
+<h4>
+    @Model.Descricao, @Model.Valor
+</h4>
