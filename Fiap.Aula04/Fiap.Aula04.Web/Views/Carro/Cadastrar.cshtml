@@ -1,0 +1,34 @@
+﻿@model Carro
+
+<h1>Cadastro de Carro</h1>
+
+@if (TempData["msg"] != null) 
+{
+    <div class="alert alert-success">
+        @TempData["msg"]
+    </div>
+}
+
+<form asp-action="cadastrar">
+    <div class="mb-3">
+        <label asp-for="Modelo"></label>
+        <input asp-for="Modelo" class="form-control"/>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Ano"></label>
+        <input asp-for="Ano" class="form-control"/>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Valor"></label>
+        <input asp-for="Valor" class="form-control"/>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Tipo"></label>
+        <input asp-for="Tipo" class="form-control"/>
+    </div>
+    <div class="mb-3">
+        <input asp-for="TetoSolar"/>
+        <label asp-for="TetoSolar"></label>
+    </div>
+    <input type="submit" value="Cadastrar" class="btn btn-primary" />
+</form>
