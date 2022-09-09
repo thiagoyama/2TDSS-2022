@@ -1,0 +1,34 @@
+﻿@model List<Carro>
+
+<h1>Carros</h1>
+
+<a asp-action="cadastrar" class="btn btn-sm btn-outline-danger">Cadastrar</a>
+
+<table class="table">
+    <tr>
+        <th>Modelo</th>
+        <th>Marca</th>
+        <th>Ano</th>
+        <th>Valor</th>
+        <th>Tipo</th>
+        <th>Combustível</th>
+        <th>Teto Solar</th>
+        <th></th>
+    </tr>
+    @foreach(var c in Model)
+    {
+        <tr>
+            <td>@c.Modelo</td>
+            <td>@c.Marca</td>
+            <td>@c.Ano</td>
+            <td>@c.Valor</td>
+            <td>@c.Tipo</td>
+            <td>@c.Combustivel</td>
+            <td>@c.TetoSolar</td>
+            <td>
+                <!--Link que envia o ID do carro que será atualizado-->
+                <a asp-action="editar" asp-route-id="@c.Codigo">Editar</a>
+            </td>
+        </tr>
+    }
+</table>
