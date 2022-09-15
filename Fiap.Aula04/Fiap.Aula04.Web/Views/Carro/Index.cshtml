@@ -2,6 +2,13 @@
 
 <h1>Carros</h1>
 
+@if (TempData["msg"] != null) 
+{
+    <div class="alert alert-success">
+        @TempData["msg"]
+    </div>
+}
+
 <a asp-action="cadastrar" class="btn btn-sm btn-outline-danger">Cadastrar</a>
 
 <table class="table">
@@ -27,8 +34,35 @@
             <td>@c.TetoSolar</td>
             <td>
                 <!--Link que envia o ID do carro que será atualizado-->
-                <a asp-action="editar" asp-route-id="@c.Codigo">Editar</a>
+                <a asp-action="editar" class="btn btn-sm btn-outline-primary"
+                    asp-route-id="@c.Codigo">Editar</a>
+                <!-- Button trigger modal -->
+                <button onclick="carroId.value = @c.Codigo" type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Remover
+                </button>
             </td>
         </tr>
     }
 </table>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Deseja realmente apagar o carro?
+      </div>
+      <div class="modal-footer">
+        <form asp-action="remover">
+            <input name="id" type="hidden" id="carroId"/>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+            <button type="submit" class="btn btn-danger">Sim</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
