@@ -2,12 +2,7 @@
 
 <h1>Edição de Carro</h1>
 
-@if (TempData["msg"] != null) 
-{
-    <div class="alert alert-success">
-        @TempData["msg"]
-    </div>
-}
+<mensagem texto="@TempData["msg"]"></mensagem>
 
 <form asp-action="editar">
     <input asp-for="Codigo"/>
@@ -45,6 +40,6 @@
         <input asp-for="TetoSolar"/>
         <label asp-for="TetoSolar"></label>
     </div>
-    <input type="submit" value="Editar" class="btn btn-primary" />
+    <botao texto="Editar"></botao>
     <a asp-action="index" class="btn btn-light">Cancelar</a>
 </form>

@@ -2,12 +2,7 @@
 
 <h1>Cadastro de Carro</h1>
 
-@if (TempData["msg"] != null) 
-{
-    <div class="alert alert-success">
-        @TempData["msg"]
-    </div>
-}
+<mensagem texto="@TempData["msg"]"></mensagem>
 
 <form asp-action="cadastrar">
     <div class="mb-3">
@@ -44,6 +39,6 @@
         <input asp-for="TetoSolar"/>
         <label asp-for="TetoSolar"></label>
     </div>
-    <input type="submit" value="Cadastrar" class="btn btn-primary" />
+    <botao></botao>
     <a asp-action="index" class="btn btn-dark">Lista de Carros</a>
 </form>

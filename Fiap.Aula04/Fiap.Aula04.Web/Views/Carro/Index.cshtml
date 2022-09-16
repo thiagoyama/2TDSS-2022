@@ -2,12 +2,7 @@
 
 <h1>Carros</h1>
 
-@if (TempData["msg"] != null) 
-{
-    <div class="alert alert-success">
-        @TempData["msg"]
-    </div>
-}
+<mensagem texto="@TempData["msg"]" class="alert alert-danger"></mensagem>
 
 <a asp-action="cadastrar" class="btn btn-sm btn-outline-danger">Cadastrar</a>
 
