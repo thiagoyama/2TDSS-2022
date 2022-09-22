@@ -1,5 +1,15 @@
 ﻿@model List<Carro>
 
+@{
+    ViewData["Title"] = "Carros";
+}
+
+@section Banner {
+    <div class="alert alert-info text-center">
+        Quer comprar carros novos com preços de usados? Clique aqui!
+    </div>
+}
+
 <h1>Carros</h1>
 
 <mensagem texto="@TempData["msg"]" class="alert alert-danger"></mensagem>
@@ -26,7 +36,7 @@
             <td>@c.Valor</td>
             <td>@c.Tipo</td>
             <td>@c.Combustivel</td>
-            <td>@c.TetoSolar</td>
+            <td>@(c.TetoSolar?"Sim":"Não")</td>
             <td>
                 <!--Link que envia o ID do carro que será atualizado-->
                 <a asp-action="editar" class="btn btn-sm btn-outline-primary"
