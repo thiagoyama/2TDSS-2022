@@ -1,0 +1,29 @@
+﻿@model List<Voo>
+
+@{
+    ViewData["Title"] = "Voos";
+}
+
+<h1>Voos</h1>
+
+<table class="table table-striped">
+    <tr>
+        <th>Origem</th>
+        <th>Destino</th>
+        <th>Duração</th>
+        <th>Data</th>
+        <th>Escala</th>
+        <th></th>
+    </tr>
+    @foreach (var v in Model)
+    {
+        <tr>
+            <td>@v.Origem</td>
+            <td>@v.Destino</td>
+            <td>@v.Duracao</td>
+            <td>@v.Data</td>
+            <td>@(v.Escala?"Sim":"Não")</td>
+            <td>Editar</td>
+        </tr>
+    }
+</table>

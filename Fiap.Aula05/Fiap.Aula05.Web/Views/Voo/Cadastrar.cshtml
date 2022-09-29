@@ -1,0 +1,38 @@
+﻿@model Voo
+
+@{
+    ViewData["Title"] = "Cadastro de Voo";
+}
+
+<h1>Cadastro</h1>
+
+@if (TempData["msg"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["msg"]
+    </div>
+}
+
+<form asp-action="cadastrar">
+    <div class="mb-3">
+        <label asp-for="Origem"></label>
+        <input asp-for="Origem" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Destino"></label>
+        <input asp-for="Destino" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Data"></label>
+        <input asp-for="Data" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Duracao"></label>
+        <input asp-for="Duracao" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <input asp-for="Escala"/>
+        <label asp-for="Escala"></label>
+    </div>
+    <input type="submit" value="Cadastrar" class="btn btn-primary" />
+</form>

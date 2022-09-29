@@ -5,7 +5,7 @@ namespace Fiap.Aula05.Web.Persistencia
 {
     public class GestaoAereaContext : DbContext
     {
-        public DbSet<Voo>? Voos { get; set; }
+        public DbSet<Voo> Voos { get; set; }        
 
         public GestaoAereaContext(DbContextOptions options) : base(options)
         {
