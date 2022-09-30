@@ -14,25 +14,8 @@
 }
 
 <form asp-action="cadastrar">
-    <div class="mb-3">
-        <label asp-for="Origem"></label>
-        <input asp-for="Origem" class="form-control" />
-    </div>
-    <div class="mb-3">
-        <label asp-for="Destino"></label>
-        <input asp-for="Destino" class="form-control" />
-    </div>
-    <div class="mb-3">
-        <label asp-for="Data"></label>
-        <input asp-for="Data" class="form-control" />
-    </div>
-    <div class="mb-3">
-        <label asp-for="Duracao"></label>
-        <input asp-for="Duracao" class="form-control" />
-    </div>
-    <div class="mb-3">
-        <input asp-for="Escala"/>
-        <label asp-for="Escala"></label>
-    </div>
+    
+    <partial name="_Form"/>
+
     <input type="submit" value="Cadastrar" class="btn btn-primary" />
 </form>

@@ -1,0 +1,17 @@
+﻿@model Voo
+
+@{
+    ViewData["Title"] = "Edição de Voo";
+}
+
+<h1>Edição de Voo</h1>
+
+<form asp-action="editar">
+
+    <input asp-for="VooId"/>
+
+    <partial name="_Form"/>
+
+    <button class="btn btn-primary">Editar</button>
+
+</form>

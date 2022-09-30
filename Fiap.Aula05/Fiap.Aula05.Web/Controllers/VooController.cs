@@ -15,6 +15,40 @@ namespace Fiap.Aula05.Web.Controllers
         }
 
         [HttpPost]
+        public IActionResult Remover(int id)
+        {
+            //Remover do banco
+            var voo = _context.Voos.Find(id);
+            _context.Voos.Remove(voo);
+            _context.SaveChanges();
+            //Mensagem
+            TempData["msg"] = "Voo removido!";
+            //Redirect
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Editar(Voo voo)
+        {
+            //Atualizar o voo no banco
+            _context.Voos.Update(voo);
+            _context.SaveChanges();
+            //Mensagem
+            TempData["msg"] = "Voo atualizado!";
+            //Redirect
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Editar(int id)
+        {
+            //Pesquisar o voo pelo id
+            var voo = _context.Voos.Find(id);
+            //Retornar a view com os dados do voo
+            return View(voo);
+        }
+
+        [HttpPost]
         public IActionResult Cadastrar(Voo voo)
         {
             //Cadastrar no banco
