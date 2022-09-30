@@ -66,10 +66,13 @@ namespace Fiap.Aula05.Web.Controllers
             return View();
         }
 
-        public IActionResult Index()
+        public IActionResult Index(bool escala, string origem)
         {
             //Recuperar os voos cadastrados
-            var lista = _context.Voos.ToList();
+            var lista = _context.Voos
+                .Where(v => (v.Origem.Contains(origem) || origem == null)
+                    && (v.Escala == escala  || !escala))
+                .ToList();
             //Enviar a lista para a view
             return View(lista);
         }
