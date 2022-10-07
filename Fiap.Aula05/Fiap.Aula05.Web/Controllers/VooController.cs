@@ -1,6 +1,7 @@
 ﻿using Fiap.Aula05.Web.Models;
 using Fiap.Aula05.Web.Persistencia;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Fiap.Aula05.Web.Controllers
 {
@@ -72,6 +73,7 @@ namespace Fiap.Aula05.Web.Controllers
             var lista = _context.Voos
                 .Where(v => (v.Origem.Contains(origem) || origem == null)
                     && (v.Escala == escala  || !escala))
+                .Include(v => v.Frequencia) //Inclui o relacionamento na pesquisa
                 .ToList();
             //Enviar a lista para a view
             return View(lista);

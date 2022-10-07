@@ -4,6 +4,7 @@ using Fiap.Aula05.Web.Persistencia;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fiap.Aula05.Web.Migrations
 {
     [DbContext(typeof(GestaoAereaContext))]
-    partial class GestaoAeraContextModelSnapshot : ModelSnapshot
+    [Migration("20221007224010_Ajuste")]
+    partial class Ajuste
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,25 +23,6 @@ namespace Fiap.Aula05.Web.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("Fiap.Aula05.Web.Models.FrequenciaVoo", b =>
-                {
-                    b.Property<int>("FrequenciaVooId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FrequenciaVooId"), 1L, 1);
-
-                    b.Property<int>("CodigoFrequencia")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DataAtivacao")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("FrequenciaVooId");
-
-                    b.ToTable("Tbl_Frequencia_Voo");
-                });
 
             modelBuilder.Entity("Fiap.Aula05.Web.Models.Voo", b =>
                 {
@@ -64,9 +47,6 @@ namespace Fiap.Aula05.Web.Migrations
                     b.Property<bool>("Escala")
                         .HasColumnType("bit");
 
-                    b.Property<int>("FrequenciaVooId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Origem")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -74,20 +54,7 @@ namespace Fiap.Aula05.Web.Migrations
 
                     b.HasKey("VooId");
 
-                    b.HasIndex("FrequenciaVooId");
-
                     b.ToTable("Tbl_Voo");
-                });
-
-            modelBuilder.Entity("Fiap.Aula05.Web.Models.Voo", b =>
-                {
-                    b.HasOne("Fiap.Aula05.Web.Models.FrequenciaVoo", "Frequencia")
-                        .WithMany()
-                        .HasForeignKey("FrequenciaVooId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Frequencia");
                 });
 #pragma warning restore 612, 618
         }

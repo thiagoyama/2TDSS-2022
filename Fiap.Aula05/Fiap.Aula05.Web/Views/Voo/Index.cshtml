@@ -33,6 +33,8 @@
         <th>Duração</th>
         <th>Data</th>
         <th>Escala</th>
+        <th>Código Frequência</th>
+        <th>Data Ativação</th>
         <th></th>
     </tr>
     @foreach (var v in Model)
@@ -43,6 +45,8 @@
             <td>@v.Duracao</td>
             <td>@v.Data</td>
             <td>@(v.Escala?"Sim":"Não")</td>
+            <td>@v.Frequencia?.CodigoFrequencia</td>
+            <td>@v.Frequencia?.DataAtivacao</td>
             <td>
                 <a asp-action="editar" class="btn btn-dark btn-sm"
                asp-route-id="@v.VooId">Editar</a>
