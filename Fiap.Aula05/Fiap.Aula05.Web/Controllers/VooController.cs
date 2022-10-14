@@ -44,7 +44,10 @@ namespace Fiap.Aula05.Web.Controllers
         public IActionResult Editar(int id)
         {
             //Pesquisar o voo pelo id
-            var voo = _context.Voos.Find(id);
+            var voo = _context.Voos
+                .Include(v => v.Frequencia) //Adiciona o relacionamento no retorno
+                .Where(v => v.VooId == id) //filtro pela PK
+                .FirstOrDefault(); //retorar o primeiro ou null
             //Retornar a view com os dados do voo
             return View(voo);
         }

@@ -1,0 +1,34 @@
+﻿@model Passagem
+
+@{
+    ViewData["Title"] = "Cadastrar";
+}
+
+<h1>Cadastro de Passagem</h1>
+
+@if (TempData["msg"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["msg"]
+    </div>
+}
+
+<form asp-action="cadastrar">
+    <div class="mb-3">
+        <label asp-for="Titular"></label>
+        <input asp-for="Titular" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Tarifa"></label>
+        <input asp-for="Tarifa" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Voo"></label>
+        <select class="form-select" asp-for="VooId"
+            asp-items="@ViewBag.voos">
+            <option>Selecione</option>
+        </select>
+    </div>
+    <button class="btn btn-primary">Cadastrar</button>
+</form>
+

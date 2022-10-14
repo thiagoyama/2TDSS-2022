@@ -10,6 +10,9 @@ namespace Fiap.Aula05.Web.Models
         [HiddenInput, Column("Id")]
         public int VooId { get; set; }
 
+        //Relacionamento 1:N
+        public IList<Passagem> Passagens { get; set; }
+
         //Relacionamento 1:1
         public FrequenciaVoo Frequencia { get; set; }
         //FK (opcional)
