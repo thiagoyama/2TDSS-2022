@@ -2,6 +2,7 @@
 using Fiap.Aula05.Web.Persistencia;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace Fiap.Aula05.Web.Controllers
 {
@@ -37,7 +38,8 @@ namespace Fiap.Aula05.Web.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            var lista = _context.Passagens.Include(p => p.Voo).ToList();
+            return View(lista);
         }
 
     }

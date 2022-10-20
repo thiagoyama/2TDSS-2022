@@ -1,0 +1,25 @@
+﻿@model IList<Passagem>
+
+@{
+    ViewData["Title"] = "Passagens";
+}
+
+<h1>Passagens</h1>
+
+<table class="table">
+    <tr>
+        <th>Titular</th>
+        <th>Tarifa</th>
+        <th>Origem</th>
+        <th>Destino</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+           <td>@item.Titular</td>
+           <td>@item.Tarifa</td>
+           <td>@item.Voo?.Origem</td>
+           <td>@item.Voo?.Destino</td>
+        </tr>
+    }
+</table>

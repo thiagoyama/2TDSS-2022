@@ -18,6 +18,9 @@ namespace Fiap.Aula05.Web.Models
         //FK (opcional)
         public int FrequenciaVooId { get; set; }
 
+        //Relacionamento N:M
+        public IList<VooServico> VoosServicos { get; set; }
+
         [Required, MaxLength(100)] 
         public string? Origem { get; set; }
 
