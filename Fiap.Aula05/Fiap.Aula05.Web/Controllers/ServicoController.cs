@@ -23,6 +23,9 @@ namespace Fiap.Aula05.Web.Controllers
         public IActionResult Cadastrar(Servico servico)
         {
             //Realizar o cadastro!
+            _context.Servicos.Add(servico);
+            _context.SaveChanges();
+            TempData["msg"] = "Serviço registrado";
             return RedirectToAction("Index");
         }
 

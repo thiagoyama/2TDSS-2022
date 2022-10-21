@@ -1,6 +1,7 @@
 ﻿using Fiap.Aula05.Web.Models;
 using Fiap.Aula05.Web.Persistencia;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace Fiap.Aula05.Web.Controllers
@@ -13,6 +14,31 @@ namespace Fiap.Aula05.Web.Controllers
         public VooController(GestaoAereaContext context)
         {
             _context = context;
+        }
+
+        [HttpPost]
+        public IActionResult Adicionar(VooServico vooServico)
+        {
+            //Cadastrar o vooServico
+            _context.VoosServicos.Add(vooServico);
+            _context.SaveChanges();
+            //Mensagem
+            TempData["msg"] = "Serviço adicionado!";
+            //Redirect para o detalhar
+            return RedirectToAction("Detalhar", new { id = vooServico.VooId});
+        }
+
+        [HttpGet]
+        public IActionResult Detalhar(int id)
+        {
+            //Listar todos os serviços
+            var lista = _context.Servicos.ToList();
+            //Enviar a lista de serviços para a view (select)
+            ViewBag.servicos = new SelectList(lista, "ServicoId", "Descricao");
+            //Pesquisar o voo por id
+            var voo = _context.Voos.Find(id);
+            //Enviar o voo para a view
+            return View(voo);
         }
 
         [HttpPost]

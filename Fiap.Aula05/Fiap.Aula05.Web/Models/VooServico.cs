@@ -1,5 +1,6 @@
 ﻿namespace Fiap.Aula05.Web.Models
 {
+    //Tabela associativa
     public class VooServico
     {
         //Relacionamento 1:N (Voo)

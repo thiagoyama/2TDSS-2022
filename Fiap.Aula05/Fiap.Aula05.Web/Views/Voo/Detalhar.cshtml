@@ -1,0 +1,58 @@
+﻿@model Voo
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<h1>
+    @Model.Origem -
+    @if (Model.Escala)
+    {
+       <span class="badge rounded-pill bg-secondary">1</span> 
+    }
+    - @Model.Destino 
+    <span class="badge bg-primary">@Model.Data </span>
+</h1>
+<table class="table table-striped">
+    <tr>
+        <th>Origem</th>
+        <th>Destino</th>
+        <th>Data</th>
+        <th>Escala</th>
+        <th>Duração</th>
+    </tr>
+    <tr>
+        <td>@Model.Origem</td>
+        <td>@Model.Destino</td>
+        <td>@Model.Data</td>
+        <td>@(Model.Escala?"Sim":"Não")</td>
+        <td>@Model.Duracao</td>
+    </tr>
+</table>
+
+<h2>Serviços</h2>
+@if (TempData["msg"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["msg"]
+    </div>
+}
+<form class="row row-cols-lg-auto g-3 mb-3 align-items-center" asp-action="adicionar">
+    <input type="hidden" name="VooId" value="@Model.VooId" />
+    <div class=col-12>
+        <select class="form-select" name="ServicoId" asp-items="@ViewBag.servicos">
+            <option>Selecione</option>
+        </select>
+    </div>
+    <div class="col-12">
+        <button class="btn btn-success">Adicionar</button>
+    </div>
+</form>
+<ul class="list-group">
+  <li class="list-group-item">An item</li>
+  <li class="list-group-item">A second item</li>
+  <li class="list-group-item">A third item</li>
+  <li class="list-group-item">A fourth item</li>
+  <li class="list-group-item">And a fifth one</li>
+</ul>
+

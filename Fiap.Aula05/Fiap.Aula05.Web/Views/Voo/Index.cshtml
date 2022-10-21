@@ -54,6 +54,8 @@
                 <button onclick="VooId.value = @v.VooId" type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Excluir
                 </button>
+                <a asp-action="detalhar" class="btn btn-warning btn-sm"
+                                                        asp-route-id="@v.VooId">Detalhes</a>
             </td>
         </tr>
     }
