@@ -19,11 +19,20 @@ namespace Fiap.Aula05.Web.Controllers
         [HttpPost]
         public IActionResult Adicionar(VooServico vooServico)
         {
-            //Cadastrar o vooServico
-            _context.VoosServicos.Add(vooServico);
-            _context.SaveChanges();
-            //Mensagem
-            TempData["msg"] = "Serviço adicionado!";
+            //Pesquisou o voo
+            var voo = _context.Voos.Find(vooServico.VooId);
+            if (voo.Data > DateTime.Now)
+            {
+                //Cadastrar o vooServico
+                _context.VoosServicos.Add(vooServico);
+                _context.SaveChanges();
+                //Mensagem
+                TempData["msg"] = "Serviço adicionado!";
+            }
+            else
+            {
+                TempData["msg"] = "Não é possível adicionar";
+            }
             //Redirect para o detalhar
             return RedirectToAction("Detalhar", new { id = vooServico.VooId});
         }
@@ -31,12 +40,35 @@ namespace Fiap.Aula05.Web.Controllers
         [HttpGet]
         public IActionResult Detalhar(int id)
         {
+            //Pesquisar pelos servicos associados ao voo
+            var vooServico = _context.VoosServicos
+                .Where(v => v.VooId == id) //Filtro
+                .Select(v => v.Servico) //Seleciona o retorno da pesquisa
+                .ToList();
+            //Enviar a lista de serviços associados ao voo
+            ViewBag.vooServico = vooServico;
             //Listar todos os serviços
             var lista = _context.Servicos.ToList();
+
+            //Filtrar a lista de serviços
+            //var listaFiltrada = new List<Servico>();
+            //foreach (var item in lista)
+            //{
+            //    if (!vooServico.Contains(item))
+            //    {
+            //        listaFiltrada.Add(item);
+            //    }
+            //}
+
+            var listaFiltrada = lista.Where(v => !vooServico.Contains(v));
+
             //Enviar a lista de serviços para a view (select)
-            ViewBag.servicos = new SelectList(lista, "ServicoId", "Descricao");
+            ViewBag.servicos = new SelectList(listaFiltrada, "ServicoId", "Descricao");
             //Pesquisar o voo por id
-            var voo = _context.Voos.Find(id);
+            var voo = _context.Voos
+                .Where(v => v.VooId == id)
+                .Include(v => v.Passagens)
+                .FirstOrDefault();
             //Enviar o voo para a view
             return View(voo);
         }

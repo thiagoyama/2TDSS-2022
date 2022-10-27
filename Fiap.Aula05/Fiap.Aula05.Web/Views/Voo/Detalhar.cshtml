@@ -8,9 +8,9 @@
     @Model.Origem -
     @if (Model.Escala)
     {
-       <span class="badge rounded-pill bg-secondary">1</span> 
+        <span class="badge rounded-pill bg-secondary">1</span>
     }
-    - @Model.Destino 
+    - @Model.Destino
     <span class="badge bg-primary">@Model.Data </span>
 </h1>
 <table class="table table-striped">
@@ -37,22 +37,33 @@
         @TempData["msg"]
     </div>
 }
-<form class="row row-cols-lg-auto g-3 mb-3 align-items-center" asp-action="adicionar">
-    <input type="hidden" name="VooId" value="@Model.VooId" />
-    <div class=col-12>
-        <select class="form-select" name="ServicoId" asp-items="@ViewBag.servicos">
-            <option>Selecione</option>
-        </select>
-    </div>
-    <div class="col-12">
-        <button class="btn btn-success">Adicionar</button>
-    </div>
-</form>
-<ul class="list-group">
-  <li class="list-group-item">An item</li>
-  <li class="list-group-item">A second item</li>
-  <li class="list-group-item">A third item</li>
-  <li class="list-group-item">A fourth item</li>
-  <li class="list-group-item">And a fifth one</li>
+
+@if (Model.Data > DateTime.Now)
+{
+    <form class="row row-cols-lg-auto g-3 mb-3 align-items-center" asp-action="adicionar">
+        <input type="hidden" name="VooId" value="@Model.VooId" />
+        <div class=col-12>
+            <select class="form-select" name="ServicoId" asp-items="@ViewBag.servicos">
+                <option>Selecione</option>
+            </select>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-success">Adicionar</button>
+        </div>
+    </form>
+}
+
+<ul class="list-group mb-3">
+    @foreach (var item in ViewBag.vooServico)
+    {
+        <li class="list-group-item">@item.Descricao</li>
+    }
 </ul>
 
+<h2>Passagens <span class="badge bg-secondary">@Model.Passagens.Count</span></h2>
+<ul class="list-group">
+    @foreach (var item in Model.Passagens)
+    {
+        <li class="list-group-item">@item.Titular, @item.Tarifa</li>
+    }
+</ul>
